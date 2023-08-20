@@ -197,17 +197,17 @@ cur.execute("CREATE TABLE channel_collection(Channel_name varchar(225),Total_Vid
 #create new table to load playlist info
 myconnection = pymysql.connect(host = '127.0.0.1',user='root',passwd="your password",database="YT_AnalysisProject")
 cur = myconnection.cursor()
-cur.execute("CREATE TABLE playlist_collection001(playlist_id varchar(225),playlist_title varchar(1000))")
+cur.execute("CREATE TABLE playlist_collection(playlist_id varchar(225),playlist_title varchar(1000))")
 
 #create a new table to load video information
 myconnection = pymysql.connect(host = '127.0.0.1',user='root',passwd="your password",database="YT_AnalysisProject")
 cur = myconnection.cursor()
-cur.execute("CREATE TABLE Video_collection001(video_id varchar(225),channelTitle varchar(225),title varchar(225),description varchar(225),tags varchar(225),publishedAt datetime,viewCount int,likeCount int,dislikeCount varchar(225),favouriteCount varchar(225),commentCount int,duration varchar(225),definition varchar(225),caption varchar(225),pushblishDayName varchar(225),durationSecs float)")
+cur.execute("CREATE TABLE Video_collection(video_id varchar(225),channelTitle varchar(225),title varchar(225),description varchar(225),tags varchar(225),publishedAt datetime,viewCount int,likeCount int,dislikeCount varchar(225),favouriteCount varchar(225),commentCount int,duration varchar(225),definition varchar(225),caption varchar(225),pushblishDayName varchar(225),durationSecs float)")
 
 #create a new table to load comment details
 myconnection = pymysql.connect(host = '127.0.0.1',user='root',passwd="your password",database="YT_AnalysisProject")
 cur = myconnection.cursor()
-cur.execute("CREATE TABLE comment_collection001(video_id varchar(225),Comment_Id varchar(200),Comment_Text TEXT,Comment_Author varchar(100),Comment_Published_At datetime)")
+cur.execute("CREATE TABLE comment_collection(video_id varchar(225),Comment_Id varchar(200),Comment_Text TEXT,Comment_Author varchar(100),Comment_Published_At datetime)")
 
 
 #Inserting the values into the table
@@ -219,19 +219,19 @@ for i in range(0,len(A)):
     myconnection.commit()
 
 2.playlist_collection
-sql1="insert into playlist_collection001(playlist_id,playlist_title)values(%s,%s)";
+sql1="insert into playlist_collection(playlist_id,playlist_title)values(%s,%s)";
 for i in range(0,len(B)):
     cur.execute(sql1,tuple(B.iloc[i]))
     myconnection.commit()
 
 3.video_info
-sql2="insert into Video_collection001(video_id,channelTitle,title,description,tags,publishedAt,viewCount,likeCount,dislikeCount,favouriteCount,commentCount,duration,definition,caption,pushblishDayName,durationSecs)values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)";
+sql2="insert into Video_collection(video_id,channelTitle,title,description,tags,publishedAt,viewCount,likeCount,dislikeCount,favouriteCount,commentCount,duration,definition,caption,pushblishDayName,durationSecs)values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)";
 for i in range(0,len(D)):
     cur.execute(sql1,tuple(D.iloc[C]))
     myconnection.commit()
 
 4.comment_collection
-sql3="insert into comment_collection001(Video_id,Comment_Id,Comment_Text,Comment_Author,Comment_Published_At)values(%s,%s,%s,%s,%s)";
+sql3="insert into comment_collection(Video_id,Comment_Id,Comment_Text,Comment_Author,Comment_Published_At)values(%s,%s,%s,%s,%s)";
 for i in range(0,len(E)):
     cur.execute(sql3,tuple(E.iloc[i]))
     myconnection.commit()
